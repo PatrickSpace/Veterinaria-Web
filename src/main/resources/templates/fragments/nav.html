@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en"  xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://unpkg.com/bootstrap-material-design@4.1.1/dist/css/bootstrap-material-design.min.css" >
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="stilo.css">
+   
+</head>
+
+<body>
+
+
+    <nav th:fragment="nav" class="navbar navbar-expand-lg navbar-dark" style="background: #008276; margin-bottom: 20px;">
+        <a class="navbar-brand" th:text="Navbar" href="#"></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/dueños/list}" th:text="Dueños"></a>
+                </li>
+
+            </ul>
+        </div>
+    </nav>
+
+
+	<script src="/js/jquery-3.2.1.slim.min.js">
+    </script>
+	<script src="/js/popper.js">
+    </script>
+	<script
+		src="https://cdn.rawgit.com/FezVrasta/snackbarjs/1.1.0/dist/snackbar.min.js"></script>
+	<script
+		src="/js/bootstrap-material-design.js">
+    </script>
+    <script>
+        $(document).ready(function() {
+            $('body').bootstrapMaterialDesign();
+        });
+    </script>
+</body>
+
+</html>

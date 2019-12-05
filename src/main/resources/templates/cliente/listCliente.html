@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<link rel="stylesheet" href="/css/bootstrap-material-design.min.css">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+	rel="stylesheet">
+<title>Vet</title>
+</head>
+
+<body>
+
+
+	<nav th:replace="fragments/nav :: nav"></nav>
+	<div class="container">
+		<div class="row" style="margin-bottom: 20px;">
+			<div class="col-6">
+				<h1 style="margin-top: 20px;">Lista de Dueños</h1>
+			</div>
+			<div class="col-1" style="padding: 0px;">
+				<span class="btn-group-sm"> <a style="margin-top: 20px;"
+					th:href="@{/clientes/find}" class="btn btn-primary bmd-btn-icon-lg">
+						<i class="material-icons">search</i>
+				</a>
+				</span>
+			</div>
+		</div>
+		<table class="table table-borderless">
+			<caption th:text="${mensaje}"></caption>
+			<thead class=" text-center thead-dark">
+				<tr>
+					<th scope="col">ID</th>
+					<th scope="col">Nombre</th>
+					<th scope="col">DNI</th>
+					<th scope="col">Celular</th>
+					<th scope="col">Telefono</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="d : ${listCliente}">
+					<th th:text="${d.idCliente}"></th>
+					<th th:text="${d.name}"></th>
+					<th th:text="${d.dni}"></th>
+					<th th:text="${d.celular}"></th>
+					<th th:text="${d.telefono}"></th>
+
+				</tr>
+			</tbody>
+		</table>
+		<div class="dropdown-divider"></div>
+		
+		<a th:href="@{/clientes/new}">
+			<button class="btn btn-raised btn-primary">Nuevo</button>
+		</a>
+	</div>
+
+	<script src="/js/jquery-3.2.1.slim.min.js">
+    </script>
+	<script src="/js/popper.js">
+    </script>
+	<script
+		src="https://cdn.rawgit.com/FezVrasta/snackbarjs/1.1.0/dist/snackbar.min.js"></script>
+	<script
+		src="/js/bootstrap-material-design.js">
+    </script>
+	<script>
+        $(document).ready(function() {
+            $('body').bootstrapMaterialDesign();
+        });
+    </script>
+</body>
+
+</html>
