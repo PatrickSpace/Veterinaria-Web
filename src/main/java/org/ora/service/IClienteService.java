@@ -6,9 +6,11 @@ import org.ora.entity.Cliente;
 
 public interface IClienteService {
 
-	public int insert(Cliente dueño);
+	public int insert(Cliente dueño, boolean nuevo);
 	
 	public List<Cliente> listar();
+	
+	public Cliente  getCliente(Long id);
 	
 	public List<Cliente> listarXnombre(String name);
 	

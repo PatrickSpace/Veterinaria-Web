@@ -18,5 +18,6 @@ public interface IClienteRepository extends JpaRepository<Cliente, Long>{
 	
 	List<Cliente> findByDni(String dni);
 	
-	
+	@Query("select c from Cliente c where c.idCliente = ?1")
+	public Cliente getClienteXId(Long id);
 }

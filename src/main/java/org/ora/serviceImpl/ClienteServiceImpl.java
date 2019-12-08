@@ -9,17 +9,22 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class ClienteServiceImpl implements IClienteService{
+public class ClienteServiceImpl implements IClienteService {
 
 	@Autowired
 	private IClienteRepository dR;
 
 	@Override
-	public int insert(Cliente dueño) {
-		int rpta=0;
-		rpta = dR.yaExisteDni(dueño.getDni());
-		if(rpta==0)
+	public int insert(Cliente dueño, boolean nuevo) {
+		int rpta = 0;
+		if (nuevo == true) {
+			rpta = dR.yaExisteDni(dueño.getDni());
+			if (rpta == 0) {
+				dR.save(dueño);
+			}
+		}else
 		{
+			rpta = 0;
 			dR.save(dueño);
 		}
 		return rpta;
@@ -32,7 +37,7 @@ public class ClienteServiceImpl implements IClienteService{
 
 	@Override
 	public List<Cliente> listarXnombre(String name) {
-		
+
 		return dR.findByName(name);
 	}
 
@@ -45,5 +50,10 @@ public class ClienteServiceImpl implements IClienteService{
 	public List<Cliente> listarXdni(String dni) {
 		return dR.findByDni(dni);
 	}
-	
+
+	@Override
+	public Cliente getCliente(Long id) {
+		return  dR.getClienteXId(id);
+	}
+
 }

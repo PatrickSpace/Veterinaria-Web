@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<link rel="stylesheet"
+	href="https://unpkg.com/bootstrap-material-design@4.1.1/dist/css/bootstrap-material-design.min.css">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+	rel="stylesheet">
+
+<title>Veterinaria</title>
+</head>
+
+<body>
+
+
+	<nav th:replace="fragments/nav :: nav "></nav>
+	<div class="container">
+
+		<div class="row">
+			<div class="col-8">
+				<h1 style="margin-top: 20px;">Boby</h1>
+			</div>
+			<div class="col-4" style="padding-top: 20px;">
+				<a th:href="@{'/mascotas/update/'+ ${mascota.idMascota}}">
+					<button type="button" class="btn btn-primary bmd-btn-icon">
+						<i class="material-icons md-36">create</i>
+					</button>
+				</a>
+
+				<button title="Eliminar" data-toggle="modal" data-target="#modal"
+					type="button" class="btn btn-danger bmd-btn-icon ">
+					<i class="material-icons md-48">block</i>
+				</button>
+			</div>
+
+		</div>
+		<div class=" dropdown-divider "></div>
+		<div class="row">
+			<button type="button" class=" btn btn-primary bmd-btn-icon ">
+				<i class="material-icons md-48">file_copy</i>
+			</button>
+			<h5 class="d-inline">Historia clinica</h5>
+		</div>
+
+		<div class="row">
+
+			<button type="button" class="btn btn-primary bmd-btn-icon ">
+				<i class="material-icons md-48">add_circle</i>
+			</button>
+			<h5 class="d-inline">Nueva Cita</h5>
+		</div>
+
+		<div class=" dropdown-divider "></div>
+		<div class="row ">
+			<div class="col-md-4 col-lg-4 col-sm-6">
+				<p>
+					<b>Raza: </b> Cruzado
+				</p>
+				<p>
+					<b>Dueño: </b><a
+						th:href="@{'/clientes/ver/'+${mascota.cliente.idCliente}}"
+						th:text="${mascota.cliente.name}">Miguel</a>
+				</p>
+			</div>
+			<div class="col-md-4 col-lg-4 col-sm-6">
+				<p>
+					<b>Fecha de nacimiento: </b> <small
+						th:text="${#dates.format(mascota.fechaNacimiento,'dd/MM/yyyy')}"></small>
+				</p>
+				<p>
+					<b>Edad: </b> <small th:text="${mascota.getYears()}"></small> año y
+					<small th:text="${mascota.getMonth()}"></small> meses
+				</p>
+			</div>
+		</div>
+		<div class="dropdown-divider "></div>
+	
+		<div th:if="${mensaje}" class="alert alert-success" role="alert">
+			<h6 th:text="${mensaje}"></h6>
+		</div>
+		<div th:if="${error}" class="alert alert-danger" role="alert">
+			<h6 th:text="${error}"></h6>
+		</div>
+		<div class="card row">
+			<nav id="navbar-example2" class="navbar navbar-light bg-light">
+				<a class="navbar-brand">Historial de vacunas:</a>
+				<ul class="nav nav-pills">
+					<li class="nav-item"><a class="nav-link" href="#fat">@fat</a>
+					</li>
+					<li class="nav-item"><a class="nav-link" href="#mdo">@mdo</a>
+					</li>
+					<li class="nav-item dropdown"><a
+						class="nav-link dropdown-toggle" data-toggle="dropdown" href="#"
+						role="button" aria-haspopup="true" aria-expanded="false">Dropdown</a>
+						<div class="dropdown-menu">
+							<a class="dropdown-item" href="#one">one</a> <a
+								class="dropdown-item" href="#two">two</a>
+							<div role="separator" class="dropdown-divider"></div>
+							<a class="dropdown-item" href="#three">three</a>
+						</div></li>
+				</ul>
+			</nav>
+			<div data-spy="scroll" data-target="#navbar-example2" data-offset="0">
+				<div style="padding: 30px;">
+					<h4 id="fat">@fat</h4>
+					<p>Lorem, ipsum dolor sit amet consectetur adipisicing elit.
+						Eligendi aperiam laboriosam debitis impedit iusto nemo ullam
+						facere dolorem temporibus inventore, placeat perferendis, eius,
+						architecto nam laudantium quam ab ipsam. Deleniti.</p>
+				</div>
+				<h4 id="mdo">@mdo</h4>
+				<p>...</p>
+				<h4 id="one">one</h4>
+				<p>...</p>
+				<h4 id="two">two</h4>
+				<p>...</p>
+				<h4 id="three">three</h4>
+				<p>...</p>
+			</div>
+		</div>
+
+	</div>
+
+
+	<div class="modal fade" id="modal" tabindex="-1" role="dialog"
+		aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">¿Estas seguro que desea eliminarlo?</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary"
+						data-dismiss="modal">Close</button>
+					<a th:href="@{'/mascotas/delete/'+ ${mascota.idMascota}}">
+						<button type="button" class="btn btn-danger">Eliminar</button>
+					</a>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+	<script src="/js/jquery-3.2.1.slim.min.js">
+    </script>
+	<script src="/js/popper.js">
+    </script>
+	<script
+		src="https://cdn.rawgit.com/FezVrasta/snackbarjs/1.1.0/dist/snackbar.min.js"></script>
+	<script src="/js/bootstrap-material-design.js">
+    </script>
+	<script>
+        $(document).ready(function() {
+            $('body').bootstrapMaterialDesign();
+        });
+    </script>
+</body>
+
+</html>

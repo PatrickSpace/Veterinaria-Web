@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<link rel="stylesheet" href="/css/bootstrap-material-design.min.css">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+	rel="stylesheet">
+<title>Vet</title>
+</head>
+
+<body>
+
+
+	<nav th:replace="fragments/nav :: nav"></nav>
+	<div class="container">
+		<div class="row">
+
+			<div class="col-12">
+				<h2>Nueva Mascota</h2>
+			</div>
+
+			<form class="row col-12" th:object="${mascota}" method="post"
+				th:action="@{/mascotas/save}">
+
+				<div class="col-6">
+					<div class="form-group row">
+						<label class="col-5 col-form-label">Nombre</label>
+						<div class="col-8">
+							<input autofocus type="text" th:field="*{nombreMascota}" required
+								class="form-control" th:errorclass="'form-control alert-danger'" />
+							<small class="form-text text-danger"
+								th:if="${#fields.hasErrors('nombreMascota')}"
+								th:errors="*{nombreMascota}"></small>
+						</div>
+					</div>
+
+					<div class="form-group row">
+						<label for="name" class="col-5 col-form-label">Fecha de
+							nacimiento</label>
+						<div class="col-8">
+							<input autofocus type="date" th:field="*{fechaNacimiento}"
+								required class="form-control"
+								th:errorclass="'form-control alert-danger'" /> <small
+								class="form-text text-danger"
+								th:if="${#fields.hasErrors('fechaNacimiento')}"
+								th:errors="*{fechaNacimiento}"></small>
+						</div>
+					</div>
+
+				</div>
+
+				<div class="col-6" style="opacity: 0;">
+
+					<div class="form-group row">
+						<label for="name" class="col-5 col-form-label">Dueño</label>
+						<div class="col-8">
+
+							<select class="custom-select custom-select-sm"
+								th:field="*{cliente}">
+								<option th:each="c : ${listCliente}" th:value="${c.idCliente}"
+									th:utext="${c.name}" />
+							</select>
+
+						</div>
+					</div>
+
+					<div class="form-group row">
+						<label for="name" class="col-5 col-form-label">Animal</label>
+						<div class="col-8">
+
+							<select class="custom-select custom-select-sm"
+								th:field="*{isPerro}">
+								<option th:value="true" th:utext="Perro" />
+								<option th:value="false" th:utext="Gato" />
+							</select>
+
+						</div>
+					</div>
+
+				</div>
+
+
+				<div class="form-group" style="opacity: 0;">
+					<label for="costo" class="bmd-label-floating">Id </label> <input
+						readonly th:field="*{idMascota}" type="number"
+						class="form-control" id="costo">
+				</div>
+				<div class="col-12">
+					<input type="submit" class="btn btn-primary btn-raised"
+						value="Guardar"></input> <a th:href="@{'/mascotas/ver/'+${mascota.idMascota}}"
+						class="btn btn-danger"> Cancel </a>
+				</div>
+				<p th:text="${mensaje}" class="form-text text-danger"></p>
+
+			</form>
+		</div>
+	</div>
+
+
+	<script src="/js/jquery-3.2.1.slim.min.js">
+    </script>
+	<script src="/js/popper.js">
+    </script>
+	<script
+		src="https://cdn.rawgit.com/FezVrasta/snackbarjs/1.1.0/dist/snackbar.min.js"></script>
+	<script src="/js/bootstrap-material-design.js">
+    </script>
+	<script>
+        $(document).ready(function() {
+            $('body').bootstrapMaterialDesign();
+        });
+    </script>
+</body>
+
+</html>

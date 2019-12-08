@@ -19,48 +19,44 @@
 	<div class="container">
 		<div class="row" style="margin-bottom: 20px;">
 			<div class="col-6">
-				<h1 style="margin-top: 20px;">Lista de Dueños</h1>
+				<h1 style="margin-top: 20px;">Lista de Perros</h1>
 			</div>
 			<div class="col-1" style="padding: 0px;">
 				<span class="btn-group-sm"> <a style="margin-top: 20px;"
-					th:href="@{/clientes/find}" class="btn btn-primary bmd-btn-icon-lg">
+					th:href="@{/mascotas/find}" class="btn btn-primary bmd-btn-icon-lg">
 						<i class="material-icons">search</i>
 				</a>
 				</span>
 			</div>
 		</div>
 		<table class="table table-borderless">
+			<caption th:text="${mensaje}"></caption>
 			<thead class=" text-center thead-dark">
 				<tr>
-					<th>ID</th>
-					<th>Nombre</th>
-					<th>DNI</th>
-					<th>Celular</th>
-					<th>Telefono</th>
-					<th>Informacion</th>
-
+					<th scope="col">ID</th>
+					<th scope="col">Nombre</th>
+					<th scope="col">Fecha de nacimeinto</th>
+					<th scope="col">Meses</th>
+					<th scope="col">Años</th>
+					<th scope="col">Actualizar</th>
+					<th scope="col">Eliminar</th>
 				</tr>
 			</thead>
 			<tbody>
-				<tr style="text-align: center;" th:each="d : ${listCliente}">
-					<th th:text="${d.idCliente}"></th>
-					<th th:text="${d.name}"></th>
-					<th th:text="${d.dni}"></th>
-					<th th:text="${d.celular}"></th>
-					<th th:text="${d.telefono}"></th>
-					<th><a th:href="@{'/clientes/ver/'+ ${d.idCliente}}">
-							<button type="button" class="btn btn-primary bmd-btn-icon ">
-								<i class="material-icons md-48">portrait</i>
-							</button>
-					</a></th>
+				<tr style="text-align: center;" th:each="d : ${listPerros}">
+					<th th:text="${d.idMascota}"></th>
+					<th th:text="${d.nombreMascota}"></th>
+					<th th:text="${#dates.format(d.fechaNacimiento,'dd/MM/yyyy')}"></th>
+					<th th:text="${d.getMonth()}"></th>
+					<th th:text="${d.getYears()}"></th>
+					<th><a th:href="@{'/mascotas/update/'+ ${d.idMascota}}">Actualizar</a></th>
+					<th><a th:href="@{'/mascotas/delete/'+ ${d.idMascota}}">Eliminar</a></th>
 				</tr>
 			</tbody>
 		</table>
 		<div class="dropdown-divider"></div>
-		<div th:if="${mensaje}" class="alert alert-success" role="alert">
-			<h6 th:text="${mensaje}"></h6>
-		</div>
-		<a th:href="@{/clientes/new}">
+
+		<a th:href="@{/mascotas/new}">
 			<button class="btn btn-raised btn-primary">Nuevo</button>
 		</a>
 	</div>

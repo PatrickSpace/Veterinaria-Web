@@ -50,7 +50,7 @@
 					<div class="form-group row">
 						<label for="name" class="col-5 col-form-label">Telefono</label>
 						<div class="col-8">
-							<input autofocus type="text" th:field="*{telefono}"
+							<input autofocus type="number" th:field="*{telefono}" 
 								class="form-control" th:errorclass="'form-control alert-danger'" />
 							<small class="form-text text-danger"
 								th:if="${#fields.hasErrors('telefono')}" th:errors="*{telefono}"></small>
