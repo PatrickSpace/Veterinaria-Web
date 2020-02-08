@@ -9,9 +9,9 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>org.ora</groupId>
-	<artifactId>Veterinaria</artifactId>
+	<artifactId>VeterinariaDeploy</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>Veterinaria</name>
+	<name>VeterinariaDeploy</name>
 	<description>Demo project for Spring Boot</description>
 
 	<properties>

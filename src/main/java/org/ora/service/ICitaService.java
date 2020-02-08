@@ -13,7 +13,7 @@ public interface ICitaService {
 	
 	public List<Cita> listarXFecha(Date dia);
 	
-	public List<Cita> listarCitasMañana();
+	public List<Cita> listarCitasNext();
 	
 	public List<Cita> listarCitasHoy();
 	

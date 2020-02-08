@@ -15,33 +15,23 @@
 
 <body>
 
-<div th:replace="fragments/load :: load"></div>
+	<div th:replace="fragments/load :: load"></div>
 	<nav th:replace="fragments/nav :: nav"></nav>
 	<div class="container">
 		<div class="row" style="margin-bottom: 20px;">
 			<div class="col-lg-4 col-sm-12">
-				<h1 style="margin-top: 20px;">Lista de Dueños</h1>
+				<h1 style="margin-top: 20px;">Lista de Servicios</h1>
 			</div>
 			<div class="col-lg-8 col-sm-12">
-				<form th:action="@{/clientes/find/nombre}" method="post"
-					th:object="${cliente}">
+				<form th:action="@{/servicios/find}" method="post"
+					th:object="${servicio}">
 
 					<div class="form-group row">
-						<div class="form-group col-3">
-							<div class="dropdown" style="margin-top: 25px;">
-								<button class="btn btn-secondary dropdown-toggle" type="button"
-									id="dropdownMenuButton" data-toggle="dropdown"
-									aria-haspopup="true" aria-expanded="false">Buscar</button>
-								<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-									<a class="dropdown-item" th:href="@{/clientes/list/nombre}">Nombre</a>
-									<a class="dropdown-item" th:href="@{/clientes/list/dni}">DNI</a>
-								</div>
-							</div>
-						</div>
+						
 						<div style="padding-left: 0px;" class="col-7 form-group">
 							<label for="search" class="bmd-label-floating">Ingrese el
-								Nombre del dueño </label> <input autofocus type="text"
-								th:field="*{name}" id="search" class="form-control" />
+								Nombre del Servicio </label> <input autofocus type="text"
+								th:field="*{nombreServicio}" id="search" class="form-control" />
 						</div>
 						<div class="col-2">
 							<button type="submit" style="margin-top: 20px;"
@@ -60,23 +50,29 @@
 				<tr>
 					<th>ID</th>
 					<th>Nombre</th>
-					<th>DNI</th>
-					<th>Celular</th>
-					<th>Telefono</th>
-					<th>Informacion</th>
+					<th>Descripcion</th>
+					<th>Intervalo</th>
+					<th>Tipo</th>
+					<th>Actualizar</th>
+					<th>Eliminar</th>
 
 				</tr>
 			</thead>
 			<tbody>
-				<tr style="text-align: center;" th:each="d : ${listCliente}">
-					<th th:text="${d.idCliente}"></th>
-					<th th:text="${d.name}"></th>
-					<th th:text="${d.dni}"></th>
-					<th th:text="${d.celular}"></th>
-					<th th:text="${d.telefono}"></th>
-					<th><a th:href="@{'/clientes/ver/'+ ${d.idCliente}}">
+				<tr style="text-align: center;" th:each="s : ${listServicios}">
+					<th th:text="${s.idServicio}"></th>
+					<th th:text="${s.nombreServicio}"></th>
+					<th th:text="${s.descripcion}"></th>
+					<th th:text="${s.intervalo}"></th>
+					<th th:text="${s.imprimirTipo()}"></th>
+					<th><a th:href="@{'/servicios/update/'+ ${s.idServicio}}">
 							<button type="button" class="btn btn-primary bmd-btn-icon ">
-								<i class="material-icons md-48">portrait</i>
+								<i class="material-icons md-48">create</i>
+							</button>
+					</a></th>
+					<th><a th:href="@{'/servicios/delete/'+ ${s.idServicio} }">
+							<button type="button" class="btn btn-danger bmd-btn-icon ">
+								<i class="material-icons md-48">delete</i>
 							</button>
 					</a></th>
 				</tr>
@@ -89,13 +85,13 @@
 		<div th:if="${mensaje}" class="alert alert-success" role="alert">
 			<h6 th:text="${mensaje}"></h6>
 		</div>
-		<a style="position: fixed; right: 50px; bottom: 30px;" th:href="@{/clientes/new}">
+		<a style="position: fixed; right: 50px; bottom: 30px;" th:href="@{/servicios/new}">
 			<button type="button" class="btn btn-primary bmd-btn-fab">
 				<i class="material-icons">add</i>
 			</button>
 		</a>
 	</div>
-		<script src="/js/vet.js">
+	<script src="/js/vet.js">
     </script>
 	<script src="/js/jquery-3.2.1.slim.min.js">
     </script>

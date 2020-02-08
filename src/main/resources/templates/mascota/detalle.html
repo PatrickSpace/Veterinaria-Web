@@ -10,13 +10,13 @@
 	href="https://unpkg.com/bootstrap-material-design@4.1.1/dist/css/bootstrap-material-design.min.css">
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
 	rel="stylesheet">
-
+<link rel="stylesheet" href="/css/vet.css">
 <title>Veterinaria</title>
 </head>
 
 <body>
 
-
+<div th:replace="fragments/load :: load"></div>
 	<nav th:replace="fragments/nav :: nav "></nav>
 	<div class="container">
 
@@ -149,7 +149,8 @@
 		</div>
 	</div>
 
-
+	<script src="/js/vet.js">
+    </script>
 	<script src="/js/jquery-3.2.1.slim.min.js">
     </script>
 	<script src="/js/popper.js">

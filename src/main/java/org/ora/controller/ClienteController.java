@@ -1,5 +1,8 @@
 package org.ora.controller;
 
+import java.text.ParseException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 import javax.validation.Valid;
@@ -11,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -29,10 +33,54 @@ public class ClienteController {
 
 	boolean nuevo = true;
 
-	@RequestMapping("/list")
+	@RequestMapping("/list/nombre")
 	public String listar(Model model) {
+		Integer busqueda = 0;
 		model.addAttribute("listCliente", dS.listar());
+		model.addAttribute("cliente", new Cliente());
+		model.addAttribute("busqueda", busqueda);
 		return "cliente/listCliente";
+	}
+	
+	@RequestMapping("/list/dni")
+	public String listardni(Model model) {
+		Integer busqueda = 0;
+		model.addAttribute("listCliente", dS.listar());
+		model.addAttribute("cliente", new Cliente());
+		model.addAttribute("busqueda", busqueda);
+		return "cliente/listClienteDNI";
+	}
+
+	@RequestMapping("/find/nombre")
+	public String buscarnombre(Map<String, Object> model, @ModelAttribute Cliente cliente) throws ParseException {
+		List<Cliente> list = new ArrayList<Cliente>();
+		if (cliente.getName() == "" || cliente.getName() == null) {
+			model.put("listCliente", dS.listar());
+		} else {
+			list = dS.listarXnombre(cliente.getName());
+			if (list.isEmpty()) {
+				model.put("vacio", "No hay Clientes con este nombre");
+			} else {
+				model.put("listCliente", dS.listarXnombre(cliente.getName()));
+			}
+		}
+		return "cliente/listCliente";
+	}
+
+	@RequestMapping("/find/dni")
+	public String buscardni(Map<String, Object> model, @ModelAttribute Cliente cliente) throws ParseException {
+		List<Cliente> list = new ArrayList<Cliente>();
+		if (cliente.getDni() == "" || cliente.getDni() == null) {
+			model.put("listCliente", dS.listar());
+		} else {
+			list = dS.listarXdni(cliente.getDni());
+			if (list.isEmpty()) {
+				model.put("vacio", "No hay Clientes con este DNI");
+			} else {
+				model.put("listCliente", dS.listarXdni(cliente.getDni()));
+			}
+		}
+		return "cliente/listClienteDNI";
 	}
 
 	@RequestMapping("/new")
@@ -64,7 +112,7 @@ public class ClienteController {
 		if (result.hasErrors()) {
 			return "cliente/cliente";
 		} else {
-			int rpta = dS.insert(cli, this.nuevo);
+			int rpta = dS.insert(cli,this.nuevo);
 			if (rpta > 0) {
 				model.addAttribute("mensaje", "Ya existe un Dueño con el DNI a registrar");
 				return "cliente/cliente";

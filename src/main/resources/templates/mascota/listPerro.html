@@ -9,12 +9,13 @@
 <link rel="stylesheet" href="/css/bootstrap-material-design.min.css">
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
 	rel="stylesheet">
+	<link rel="stylesheet" href="/css/vet.css">
 <title>Vet</title>
 </head>
 
 <body>
 
-
+<div th:replace="fragments/load :: load"></div>
 	<nav th:replace="fragments/nav :: nav"></nav>
 	<div class="container">
 		<div class="row" style="margin-bottom: 20px;">
@@ -60,7 +61,8 @@
 			<button class="btn btn-raised btn-primary">Nuevo</button>
 		</a>
 	</div>
-
+	<script src="/js/vet.js">
+    </script>
 	<script src="/js/jquery-3.2.1.slim.min.js">
     </script>
 	<script src="/js/popper.js">

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<link rel="stylesheet" href="/css/bootstrap-material-design.min.css">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+	rel="stylesheet">
+<link rel="stylesheet" href="/css/vet.css">
+<title>Vet</title>
+</head>
+
+<body onload="getHora()">
+
+	<div th:replace="fragments/load :: load"></div>
+	<nav th:replace="fragments/nav :: nav"></nav>
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-6">
+				<div class="d-flex flex-row">
+					<h2>Citas de Hoy</h2>
+				
+				</div>
+				<table class="table table-borderless">
+					<thead class=" text-center thead-dark">
+						<tr>
+							<th>ID</th>
+							<th>Mascota</th>
+							<th>Hora</th>
+							<th>Fecha</th>
+							<th>Motivo</th>
+
+
+						</tr>
+					</thead>
+					<tbody>
+						<tr style="text-align: center;" th:each="d : ${listCitas}">
+							<th th:text="${d.idCita}"></th>
+							<th th:text="${d.mascota.nombreMascota}"></th>
+							<th th:text="${d.getHoraCita()}"></th>
+							<th th:text="${d.getDiaCita()}"></th>
+							<th th:text="${d.motivo}"></th>
+							<th><a th:href="@{'/citas/ver/'+ ${d.idCita}}">
+									<button type="button" class="btn btn-primary bmd-btn-icon ">
+										<i class="material-icons md-48"> portrait </i>
+									</button>
+							</a></th>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+
+			<div class="col-lg-6">
+				<div class="text-center">
+					<h1 class="hora" id="hora"></h1>
+					<h3 id="fecha"></h3>
+				</div>
+			</div>
+			
+		</div>
+		<a style="position: fixed; right: 50px; bottom: 30px;"
+			th:href="@{/citas/new}">
+			<button type="button" class="btn btn-primary bmd-btn-fab">
+				<i class="material-icons">add</i>
+			</button>
+		</a>
+	</div>
+
+	<script src="/js/vet.js">
+    </script>
+	<script src="/js/jquery-3.2.1.slim.min.js">
+    </script>
+	<script src="/js/popper.js">
+    </script>
+	<script
+		src="https://cdn.rawgit.com/FezVrasta/snackbarjs/1.1.0/dist/snackbar.min.js"></script>
+	<script src="/js/bootstrap-material-design.js">
+    </script>
+	<script>
+        $(document).ready(function() {
+            $('body').bootstrapMaterialDesign();
+        });
+    </script>
+</body>
+
+</html>

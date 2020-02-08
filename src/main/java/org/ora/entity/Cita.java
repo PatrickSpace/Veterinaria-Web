@@ -1,5 +1,7 @@
 package org.ora.entity;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -20,31 +22,13 @@ public class Cita {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long idCita;
-	
+
+	//fecha de cita que debe venir el paciente
 	@Column(name = "fechaProyectada", nullable = false)
 	private Date fechaProyectada;
 
 	@Column(nullable = true, name = "fechaAtencion")
 	private Date fechaAtencion;
-	
-	@Column(name = "fechaProxCita")
-	private Date fechaProxCita;
-
-	public Date getFechaProyectada() {
-		return fechaProyectada;
-	}
-
-	public void setFechaProyectada(Date fechaProyectada) {
-		this.fechaProyectada = fechaProyectada;
-	}
-
-	public Date getFechaProxCita() {
-		return fechaProxCita;
-	}
-
-	public void setFechaProxCita(Date fechaProxCita) {
-		this.fechaProxCita = fechaProxCita;
-	}
 
 	@OneToMany
 	@JoinColumn(nullable = true, name = "DetalleCita")
@@ -53,6 +37,28 @@ public class Cita {
 	@ManyToOne
 	@JoinColumn(name = "mascota", nullable = false)
 	private Mascota mascota;
+	
+	@Column(nullable = false , name = "motivo")
+	private String motivo;
+
+	
+	public String getMotivo() {
+		return motivo;
+	}
+
+	public void setMotivo(String motivo) {
+		this.motivo = motivo;
+	}
+
+	public String getHoraCita() {
+		DateFormat hora = new SimpleDateFormat("HH:mm");
+		return hora.format(this.fechaProyectada);
+	}
+	
+	public String getDiaCita() {
+		DateFormat fecha = new SimpleDateFormat("dd/MM/yyyy");
+		return fecha.format(this.fechaProyectada);
+	}
 
 	public Long getIdCita() {
 		return idCita;
@@ -84,6 +90,14 @@ public class Cita {
 
 	public void setMascota(Mascota mascota) {
 		this.mascota = mascota;
+	}
+
+	public Date getFechaProyectada() {
+		return fechaProyectada;
+	}
+
+	public void setFechaProyectada(Date fechaProyectada) {
+		this.fechaProyectada = fechaProyectada;
 	}
 
 	public Cita() {

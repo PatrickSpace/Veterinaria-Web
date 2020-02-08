@@ -15,12 +15,15 @@ public class ServicioServiceImpl implements IServicioService {
 	private IServcioRepository sR;
 
 	@Override
-	public int insert(Servicio serv) {
+	public int insert(Servicio serv, boolean nuevo) {
 		int rpta = 0;
-		rpta = sR.yaExsite(serv.getNombreServicio());
-		if (rpta == 0) {
+		if (nuevo == true) {
+			rpta = sR.yaExsite(serv.getNombreServicio());
+			if (rpta == 0) {
+				sR.save(serv);
+			}
+		}else 
 			sR.save(serv);
-		}
 		return rpta;
 	}
 
@@ -31,13 +34,20 @@ public class ServicioServiceImpl implements IServicioService {
 
 	@Override
 	public List<Servicio> listarXnombre(String name) {
-		return sR.findbyName(name);
+		
+		String nombre = name.toUpperCase();
+		return sR.findbyName(nombre);
 	}
 
 	@Override
 	public void eliminar(Long id) {
 		sR.deleteById(id);
 
+	}
+
+	@Override
+	public Servicio buscarServicio(Long id) {
+		return sR.buscarXid(id);
 	}
 
 }

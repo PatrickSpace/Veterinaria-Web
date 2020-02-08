@@ -34,7 +34,7 @@ public class CitaServiceImpl implements ICitaService {
 	}
 
 	@Override
-	public List<Cita> listarCitasMañana() {
+	public List<Cita> listarCitasNext() {
 		// TODO Auto-generated method stub
 		return null;
 	}

@@ -23,7 +23,7 @@
 				<h1 style="margin-top: 20px;">Lista de Dueños</h1>
 			</div>
 			<div class="col-lg-8 col-sm-12">
-				<form th:action="@{/clientes/find/nombre}" method="post"
+				<form th:action="@{/clientes/find/dni}" method="post"
 					th:object="${cliente}">
 
 					<div class="form-group row">
@@ -33,15 +33,15 @@
 									id="dropdownMenuButton" data-toggle="dropdown"
 									aria-haspopup="true" aria-expanded="false">Buscar</button>
 								<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-									<a class="dropdown-item" th:href="@{/clientes/list/nombre}">Nombre</a>
-									<a class="dropdown-item" th:href="@{/clientes/list/dni}">DNI</a>
+									<a class="dropdown-item" th:href="@{/clientes/list/nombre}">Nombre</a> <a
+										class="dropdown-item" th:href="@{/clientes/list/dni}">DNI</a> 
 								</div>
 							</div>
 						</div>
 						<div style="padding-left: 0px;" class="col-7 form-group">
 							<label for="search" class="bmd-label-floating">Ingrese el
-								Nombre del dueño </label> <input autofocus type="text"
-								th:field="*{name}" id="search" class="form-control" />
+								DNI del dueño </label> <input autofocus type="text"
+								th:field="*{dni}" id="search" class="form-control" />
 						</div>
 						<div class="col-2">
 							<button type="submit" style="margin-top: 20px;"
@@ -95,7 +95,7 @@
 			</button>
 		</a>
 	</div>
-		<script src="/js/vet.js">
+	<script src="/js/vet.js">
     </script>
 	<script src="/js/jquery-3.2.1.slim.min.js">
     </script>

@@ -9,12 +9,13 @@
 <link rel="stylesheet" href="/css/bootstrap-material-design.min.css">
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
 	rel="stylesheet">
+	<link rel="stylesheet" href="/css/vet.css">
 <title>Vet</title>
 </head>
 
 <body>
 
-
+<div th:replace="fragments/load :: load"></div>
 	<nav th:replace="fragments/nav :: nav"></nav>
 	<div class="container">
 		<div class="row">
@@ -91,7 +92,7 @@
 				</div>
 				<div class="col-12">
 					<input type="submit" class="btn btn-primary btn-raised"
-						value="Guardar"></input> <a th:href="@{'/mascotas/ver/'+${mascota.idMascota}}"
+						value="Guardar"></input> <a th:href="@{'/clientes/ver/'+${mascota.cliente.idCliente}}"
 						class="btn btn-danger"> Cancel </a>
 				</div>
 				<p th:text="${mensaje}" class="form-text text-danger"></p>
@@ -100,7 +101,8 @@
 		</div>
 	</div>
 
-
+	<script src="/js/vet.js">
+    </script>
 	<script src="/js/jquery-3.2.1.slim.min.js">
     </script>
 	<script src="/js/popper.js">

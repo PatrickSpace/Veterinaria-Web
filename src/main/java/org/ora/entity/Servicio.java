@@ -24,6 +24,29 @@ public class Servicio {
 	@Column(name = "descripcion", nullable = false)
 	private String descripcion;
 
+	// 0 para ambos 1 para perro 2 para gato
+	@Column(name = "tipo", nullable = false)
+	private int tipo;
+
+	public String imprimirTipo() {
+		String valor = "";
+		switch (this.tipo) {
+		case 0:
+			valor = "Ambos";
+			break;
+		case 1:
+			valor = "Perro";
+			break;
+		case 2:
+			valor = "Gato";
+			break;
+		default:
+			valor = "Ambos";
+			break;
+		}
+		return valor;
+	}
+
 	public String getDescripcion() {
 		return descripcion;
 	}
@@ -31,10 +54,6 @@ public class Servicio {
 	public void setDescripcion(String descripcion) {
 		this.descripcion = descripcion;
 	}
-
-	// 0 para ambos 1 para perro 2 para gato
-	@Column(name = "tipo", nullable = false)
-	private int tipo;
 
 	public int getTipo() {
 		return tipo;

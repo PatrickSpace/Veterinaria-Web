@@ -37,8 +37,8 @@ public class ClienteServiceImpl implements IClienteService {
 
 	@Override
 	public List<Cliente> listarXnombre(String name) {
-
-		return dR.findByName(name);
+		String nombre = name.toUpperCase();
+		return dR.findByName(nombre);
 	}
 
 	@Override

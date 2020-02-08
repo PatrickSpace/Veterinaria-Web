@@ -13,9 +13,10 @@ public interface IClienteRepository extends JpaRepository<Cliente, Long>{
 	@Query("select count(d.dni) from Cliente d where d.dni = ?1")
 	int yaExisteDni(String dni);
 	
+	@Query("select c from Cliente c where upper(c.name) like %?1%")
+	List<Cliente> findByName(String nombre);
 	
-	List<Cliente> findByName(String nombreDueño);
-	
+	@Query("select c from Cliente c where c.dni like %?1%")
 	List<Cliente> findByDni(String dni);
 	
 	@Query("select c from Cliente c where c.idCliente = ?1")
